@@ -3,101 +3,463 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account</title>
+    <title>Create Account - URL Shortener</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000000;
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            height: 100vh;
+            justify-content: center;
+            color: #ffffff;
+            line-height: 1.6;
+            position: relative;
         }
 
-        .form-container {
-            background: white;
-            padding: 30px 40px;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="password"] {
+        .container {
             width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
+            max-width: 1000px;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
         }
 
-        input[type="submit"] {
-            width: 100%;
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #4CAF50;
-            border: none;
-            border-radius: 6px;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
+        .two-column-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: stretch;
         }
 
-        input[type="submit"]:hover {
-            background-color: #45a049;
+        .left-column {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
         }
 
-        .create{
-            width: 95%;
-            margin-top: 20px;
-    
-            padding: 10px;
-            background-color: #2e5aba;
-            border: none;
+        .right-column {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .header {
             text-align: center;
-            border-radius: 6px;
-            color: white;
-            font-size: 16px;
+            margin-bottom: 2.5rem;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            color: #a0a0a0;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        .form-section {
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
             display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #ffffff;
+            font-size: 0.95rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-input::placeholder {
+            color: #666666;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+            color: #a0a0a0;
+            font-size: 0.875rem;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .divider span {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 0 1rem;
+            position: relative;
+        }
+
+        .login-link {
+            display: block;
+            text-align: center;
+            padding: 1rem 2rem;
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
             text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: inherit;
         }
 
-        .create:hover{
-            background-color: #4b70cd;
+        .login-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-description {
+            color: #a0a0a0;
+            font-size: 1rem;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .benefits {
+            margin-top: auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .benefit {
+            text-align: left;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .benefit-icon {
+            font-size: 1.5rem;
+            display: block;
+            flex-shrink: 0;
+            color: #ffffff;
+        }
+
+        .benefit-content {
+            flex: 1;
+        }
+
+        .benefit-title {
+            font-size: 1rem;
+            color: #ffffff;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .benefit-text {
+            font-size: 0.8rem;
+            color: #a0a0a0;
+            font-weight: 400;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #a0a0a0;
+            font-weight: 400;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .two-column-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .left-column,
+            .right-column {
+                padding: 2rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .welcome-title {
+                font-size: 1.5rem;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation classes */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Loading animation for button */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            border-top-color: #000000;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Focus visible for accessibility */
+        .submit-btn:focus-visible,
+        .form-input:focus-visible,
+        .login-link:focus-visible {
+            outline: 2px solid #ffffff;
+            outline-offset: 2px;
         }
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <h2>Create Account</h2>
-        <form action="/signup" method="POST">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-        
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-        
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-        
-            <input type="submit" value="Create Account">
-        </form>
+    <div class="container">
+        <div class="two-column-layout">
+            <!-- Left Column - Signup Form -->
+            <div class="left-column">
+                <div class="header">
+                    <h1 class="logo">URL Shortener</h1>
+                    <p class="subtitle">Create your account to start shortening URLs</p>
+                </div>
 
-<a class="create"  href="/login">Login</a>
+                <div class="form-section">
+                    <form action="/signup" method="POST">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" id="name" name="name" class="form-input" required 
+                                   placeholder="Enter your full name">
+                        </div>
 
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-input" required 
+                                   placeholder="Enter your email address">
+                        </div>
 
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" id="password" name="password" class="form-input" required 
+                                   placeholder="Create a strong password">
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            Create Account
+                        </button>
+                    </form>
+
+                    <div class="divider">
+                        <span>or</span>
+                    </div>
+
+                    <a href="/login" class="login-link">
+                        Sign In
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Column - Benefits & Info -->
+            <div class="right-column">
+                <div class="welcome-section">
+                    <h2 class="welcome-title">Join Our Community!</h2>
+                    <p class="welcome-description">
+                        Create your account and start shortening URLs instantly. 
+                        Get access to powerful analytics, secure link management, and more.
+                    </p>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">5K+</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100K+</div>
+                        <div class="stat-label">URLs Created</div>
+                    </div>
+                </div>
+
+                <div class="benefits">
+                    <div class="benefit">
+                        <span class="benefit-icon">🚀</span>
+                        <div class="benefit-content">
+                            <div class="benefit-title">Instant Setup</div>
+                            <div class="benefit-text">Get started in seconds with our simple signup process</div>
+                        </div>
+                    </div>
+                    <div class="benefit">
+                        <span class="benefit-icon">📊</span>
+                        <div class="benefit-content">
+                            <div class="benefit-title">Advanced Analytics</div>
+                            <div class="benefit-text">Track clicks, monitor performance, and gain insights</div>
+                        </div>
+                    </div>
+                    <div class="benefit">
+                        <span class="benefit-icon">🔒</span>
+                        <div class="benefit-content">
+                            <div class="benefit-title">Secure & Private</div>
+                            <div class="benefit-text">Your data is protected with enterprise-grade security</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script>
+        // Add loading state to form
+        document.querySelector('form').addEventListener('submit', function() {
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="loading"></span> Creating account...';
+            
+            // Re-enable after timeout (in case of errors)
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }, 10000);
+        });
+
+        // Add focus effects
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentNode.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.parentNode.classList.remove('focused');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

@@ -14,59 +14,84 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #000000;
             min-height: 100vh;
-            color: #1e293b;
+            color: #ffffff;
             line-height: 1.6;
+            position: relative;
         }
 
         .container {
-            max-width: 1200px;
+            width: 100%;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 2rem;
+            position: relative;
+            z-index: 10;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            padding: 2.5rem;
-            margin: 2rem auto;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .two-column-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        .left-column {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            max-height: 100vh;
+            overflow: hidden;
+        }
+
+        .right-column {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            height: fit-content;
+            position: sticky;
+            top: 2rem;
         }
 
         .header {
             text-align: center;
             margin-bottom: 2.5rem;
+            flex-shrink: 0;
         }
 
         .logo {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #6366f1, #10b981);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #ffffff;
             margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
         }
 
         .subtitle {
-            color: #64748b;
+            color: #a0a0a0;
             font-size: 1.1rem;
-            font-weight: 500;
+            font-weight: 400;
         }
 
         .user-info {
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
-            border: 1px solid #f59e0b;
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
             padding: 1.5rem;
             margin: 1.5rem 0;
             display: flex;
@@ -74,6 +99,7 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
+            flex-shrink: 0;
         }
 
         .user-details {
@@ -85,49 +111,74 @@
 
         .user-name {
             font-weight: 600;
-            color: #92400e;
+            color: #ffffff;
             font-size: 1.1rem;
         }
 
         .user-role {
-            background: linear-gradient(135deg, #6366f1, #4f46e5);
-            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
             padding: 0.5rem 1rem;
-            border-radius: 25px;
+            border-radius: 8px;
             font-size: 0.875rem;
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .logout-btn {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
-            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 0.75rem 1.5rem;
-            border-radius: 12px;
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 0.9rem;
             transition: all 0.3s ease;
             font-family: inherit;
         }
 
         .logout-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .url-shortener-section {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+            margin-right: -0.5rem;
+        }
+
+        .url-shortener-section::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .url-shortener-section::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .url-shortener-section::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+        }
+
+        .url-shortener-section::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .form-section {
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
             padding: 2rem;
             margin: 2rem 0;
-            border: 1px solid #e2e8f0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .form-title {
             font-size: 1.5rem;
-            font-weight: 700;
-            color: #1e293b;
+            font-weight: 600;
+            color: #ffffff;
             margin-bottom: 1rem;
         }
 
@@ -138,78 +189,59 @@
         .form-label {
             display: block;
             margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #374151;
+            font-weight: 500;
+            color: #ffffff;
             font-size: 0.95rem;
         }
 
         .form-input {
             width: 100%;
             padding: 1rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
             font-size: 1rem;
             transition: all 0.3s ease;
-            background: white;
+            background: rgba(255, 255, 255, 0.05);
             font-family: inherit;
+            color: #ffffff;
         }
 
         .form-input:focus {
             outline: none;
-            border-color: #6366f1;
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-            transform: translateY(-1px);
+            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .form-input::placeholder {
-            color: #9ca3af;
+            color: #666666;
         }
 
         .submit-btn {
             width: 100%;
             padding: 1rem 2rem;
-            background: linear-gradient(135deg, #6366f1, #4f46e5);
-            color: white;
+            background: #ffffff;
+            color: #000000;
             border: none;
-            border-radius: 12px;
+            border-radius: 8px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: inherit;
-            position: relative;
-            overflow: hidden;
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
-        }
-
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .submit-btn:hover::before {
-            left: 100%;
+            background: rgba(255, 255, 255, 0.9);
         }
 
         .success-message {
-            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
-            border: 1px solid #10b981;
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
             padding: 1.5rem;
             margin: 1.5rem 0;
-            color: #065f46;
+            color: #ffffff;
             position: relative;
-            overflow: hidden;
         }
 
         .success-message::before {
@@ -219,132 +251,193 @@
             left: 0;
             width: 4px;
             height: 100%;
-            background: #10b981;
+            background: #ffffff;
+            border-radius: 2px;
         }
 
         .success-message strong {
-            color: #10b981;
+            color: #ffffff;
         }
 
         .success-link {
-            color: #2563eb;
+            color: #ffffff;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .success-link:hover {
-            color: #1d4ed8;
-            text-decoration: underline;
+            color: #ffffff;
+            border-bottom-color: #ffffff;
         }
 
-        .table-section {
-            margin-top: 2rem;
+        .info-section {
+            margin-bottom: 2rem;
         }
 
-        .table-title {
+        .info-title {
             font-size: 1.5rem;
-            font-weight: 700;
-            color: #1e293b;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .info-description {
+            color: #a0a0a0;
+            font-size: 1rem;
+            line-height: 1.6;
             margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .table-container {
-            overflow-x: auto;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-        }
-
-        .table th {
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-            padding: 1.25rem 1rem;
-            text-align: left;
-            font-weight: 600;
-            color: #1e293b;
-            border-bottom: 1px solid #e2e8f0;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        .table td {
-            padding: 1.25rem 1rem;
-            border-bottom: 1px solid #f1f5f9;
-            color: #64748b;
-            transition: background-color 0.2s ease;
-        }
-
-        .table tr:hover {
-            background: #f8fafc;
-        }
-
-        .table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .url-link {
-            color: #2563eb;
-            text-decoration: none;
-            font-weight: 500;
-            word-break: break-all;
-            transition: all 0.3s ease;
-        }
-
-        .url-link:hover {
-            color: #1d4ed8;
-            text-decoration: underline;
-        }
-
-        .click-count {
-            font-weight: 600;
-            color: #6366f1;
-            background: rgba(99, 102, 241, 0.1);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.875rem;
         }
 
         .stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
 
         .stat-card {
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            background: rgba(255, 255, 255, 0.05);
             padding: 1.5rem;
-            border-radius: 15px;
+            border-radius: 12px;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #e2e8f0;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .stat-number {
             font-size: 2rem;
             font-weight: 800;
-            color: #6366f1;
+            color: #ffffff;
             margin-bottom: 0.5rem;
         }
 
         .stat-label {
             font-size: 0.875rem;
-            color: #64748b;
+            color: #a0a0a0;
+            font-weight: 400;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .feature {
+            text-align: left;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            display: block;
+            flex-shrink: 0;
+            color: #ffffff;
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-title {
+            font-size: 1rem;
+            color: #ffffff;
             font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-text {
+            font-size: 0.8rem;
+            color: #a0a0a0;
+            font-weight: 400;
+        }
+
+        .url-list {
+            flex: 1;
+        }
+
+        .url-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .url-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .url-number {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .url-clicks {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .url-short {
+            margin-bottom: 0.75rem;
+        }
+
+        .url-short-label {
+            font-size: 0.875rem;
+            color: #a0a0a0;
+            font-weight: 400;
+            margin-bottom: 0.25rem;
+        }
+
+        .url-short-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            transition: color 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .url-short-link:hover {
+            color: #ffffff;
+            border-bottom-color: #ffffff;
+        }
+
+        .url-original {
+            margin-bottom: 0.75rem;
+        }
+
+        .url-original-label {
+            font-size: 0.875rem;
+            color: #a0a0a0;
+            font-weight: 400;
+            margin-bottom: 0.25rem;
+        }
+
+        .url-original-text {
+            color: #ffffff;
+            word-break: break-all;
+            font-size: 0.875rem;
         }
 
         @media (max-width: 768px) {
@@ -352,13 +445,24 @@
                 padding: 1rem;
             }
             
-            .card {
-                padding: 1.5rem;
-                margin: 1rem auto;
+            .two-column-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .left-column,
+            .right-column {
+                padding: 2rem;
+                max-height: none;
+                overflow: visible;
+            }
+
+            .right-column {
+                position: static;
             }
             
             .logo {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
             
             .user-info {
@@ -366,17 +470,14 @@
                 text-align: center;
             }
             
-            .table-container {
-                font-size: 0.875rem;
-            }
-            
-            .table th,
-            .table td {
-                padding: 0.75rem 0.5rem;
-            }
-            
             .stats {
                 grid-template-columns: 1fr;
+            }
+
+            .url-shortener-section {
+                overflow-y: visible;
+                padding-right: 0;
+                margin-right: 0;
             }
         }
 
@@ -414,62 +515,110 @@
 </head>
 <body>
     <div class="container">
-        <div class="card fade-in">
-            <div class="header">
-                <h1 class="logo">🔗 URL Shortener</h1>
-                <p class="subtitle">Create and manage your shortened URLs</p>
-            </div>
-
-            <!-- User Info Section -->
-            <div class="user-info slide-up">
-                <div class="user-details">
-                    <span class="user-name">👋 Welcome, <%= name %></span>
-                    <span class="user-role"><%= role %></span>
+        <div class="two-column-layout">
+            <!-- Left Column - URL Shortening Form and User Info -->
+            <div class="left-column fade-in">
+                <div class="header">
+                    <h1 class="logo">URL Shortener</h1>
+                    <p class="subtitle">Create and manage your shortened URLs</p>
                 </div>
-                <form action="/logout" method="GET" style="margin: 0;">
-                    <button type="submit" class="logout-btn">🚪 Logout</button>
-                </form>
-            </div>
 
-            <!-- URL Shortening Form -->
-            <div class="form-section slide-up">
-                <h2 class="form-title">✂️ Shorten a URL</h2>
-                <form action="/url" method="POST">
-                    <div class="form-group">
-                        <label for="url" class="form-label">Enter your URL to shorten</label>
-                        <input type="text" name="url" id="url" required pattern="https?://.+" 
-                               class="form-input" placeholder="https://example.com/your-long-url-here">
-                        <small style="color: #64748b; margin-top: 0.5rem; display: block;">
-                            Please include http:// or https:// in your URL
-                        </small>
+                <!-- User Info Section -->
+                <div class="user-info slide-up">
+                    <div class="user-details">
+                        <span class="user-name">Welcome, <%= name %></span>
+                        <span class="user-role"><%= role %></span>
                     </div>
-                    <button type="submit" class="submit-btn">
-                        ✂️ Generate Short URL
-                    </button>
-                </form>
+                    <form action="/logout" method="GET" style="margin: 0;">
+                        <button type="submit" class="logout-btn">Logout</button>
+                    </form>
+                </div>
+
+                <!-- URL Shortener Section (Scrollable) -->
+                <div class="url-shortener-section">
+                    <!-- URL Shortening Form -->
+                    <div class="form-section slide-up">
+                        <h2 class="form-title">Shorten a URL</h2>
+                        <form action="/url" method="POST">
+                            <div class="form-group">
+                                <label for="url" class="form-label">Enter your URL to shorten</label>
+                                <input type="text" name="url" id="url" required pattern="https?://.+" 
+                                       class="form-input" placeholder="https://example.com/your-long-url-here">
+                                <small style="color: #666666; margin-top: 0.5rem; display: block;">
+                                    Please include http:// or https:// in your URL
+                                </small>
+                            </div>
+                            <button type="submit" class="submit-btn">
+                                Generate Short URL
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Success Message -->
+                    <% if (locals.shortId) { %>
+                        <div class="success-message slide-up">
+                            <p style="margin: 0;">
+                                ✅ <strong>Successfully created short code:</strong> <%= shortId %>
+                            </p>
+                            <p style="margin-top: 10px;">
+                                <a href="https://url-shortener-b0ag.onrender.com/url/<%= shortId %>" 
+                                   class="success-link" target="_blank">
+                                    https://url-shortener-b0ag.onrender.com/url/<%= shortId %>
+                                </a>
+                            </p>
+                        </div>
+                    <% } %>
+
+                    <!-- URL List -->
+                    <% if (locals.url && url.length > 0) { %>
+                        <div class="url-list slide-up">
+                            <h3 style="font-size: 1.5rem; font-weight: 600; color: #ffffff; margin-bottom: 1.5rem; text-align: center;">
+                                Your Shortened URLs
+                            </h3>
+                            
+                            <% url.forEach((item, index) => { %>
+                                <div class="url-item">
+                                    <div class="url-header">
+                                        <span class="url-number">#<%= index + 1 %></span>
+                                        <span class="url-clicks"><%= item.visitHistory.length %> clicks</span>
+                                    </div>
+                                    
+                                    <div class="url-short">
+                                        <div class="url-short-label">Shortened Link:</div>
+                                        <a href="https://url-shortener-b0ag.onrender.com/url/<%= item.shortID %>" 
+                                           class="url-short-link" target="_blank">
+                                            https://url-shortener-b0ag.onrender.com/url/<%= item.shortID %>
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="url-original">
+                                        <div class="url-original-label">Original URL:</div>
+                                        <div class="url-original-text">
+                                            <%= item.reDirectUrl %>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        </div>
+                    <% } else if (locals.url) { %>
+                        <div class="slide-up" style="text-align: center; padding: 3rem; color: #666666;">
+                            <p style="font-size: 1.1rem;">No URLs created yet. Create your first shortened URL above!</p>
+                        </div>
+                    <% } %>
+                </div>
             </div>
 
-            <!-- Success Message -->
-            <% if (locals.shortId) { %>
-                <div class="success-message slide-up">
-                    <p style="margin: 0;">
-                        ✅ <strong>Successfully created short code:</strong> <%= shortId %>
-                    </p>
-                    <p style="margin-top: 10px;">
-                        <a href="https://url-shortener-b0ag.onrender.com/url/<%= shortId %>" 
-                           class="success-link" target="_blank">
-                            🔗 https://url-shortener-b0ag.onrender.com/url/<%= shortId %>
-                        </a>
+            <!-- Right Column - Statistics and Information -->
+            <div class="right-column fade-in">
+                <div class="info-section">
+                    <h2 class="info-title">Dashboard Overview</h2>
+                    <p class="info-description">
+                        Welcome to your URL shortening dashboard! Create, manage, and track all your shortened URLs in one place. 
+                        Monitor performance and get insights into your link usage.
                     </p>
                 </div>
-            <% } %>
 
-            <!-- URL List -->
-            <% if (locals.url && url.length > 0) { %>
-                <div class="table-section slide-up">
-                    <h3 class="table-title">📊 Your Shortened URLs</h3>
-                    
-                    <!-- Stats Summary -->
+                <% if (locals.url && url.length > 0) { %>
                     <div class="stats">
                         <div class="stat-card">
                             <div class="stat-number"><%= url.length %></div>
@@ -487,51 +636,50 @@
                             </div>
                             <div class="stat-label">Avg Clicks</div>
                         </div>
+                        <div class="stat-card">
+                            <div class="stat-number">
+                                <%= Math.max(...url.map(item => item.visitHistory.length)) || 0 %>
+                            </div>
+                            <div class="stat-label">Most Clicks</div>
+                        </div>
                     </div>
+                <% } else { %>
+                    <div class="stats">
+                        <div class="stat-card">
+                            <div class="stat-number">0</div>
+                            <div class="stat-label">Total URLs</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">0</div>
+                            <div class="stat-label">Total Clicks</div>
+                        </div>
+                    </div>
+                <% } %>
 
-                    <div class="table-container">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Short ID</th>
-                                    <th>Shortened Link</th>
-                                    <th>Original URL</th>
-                                    <th>Clicks</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% url.forEach((item, index) => { %>
-                                    <tr>
-                                        <td><%= index + 1 %></td>
-                                        <td><strong><%= item.shortID %></strong></td>
-                                        <td>
-                                            <a href="https://url-shortener-b0ag.onrender.com/url/<%= item.shortID %>" 
-                                               class="url-link" target="_blank">
-                                                🔗 https://url-shortener-b0ag.onrender.com/url/<%= item.shortID %>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <span style="word-break: break-all; color: #64748b;">
-                                                <%= item.reDirectUrl %>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span class="click-count">
-                                                <%= item.visitHistory.length %>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                <% }) %>
-                            </tbody>
-                        </table>
+                <div class="features">
+                    <div class="feature">
+                        <span class="feature-icon">⚡</span>
+                        <div class="feature-content">
+                            <div class="feature-title">Instant Shortening</div>
+                            <div class="feature-text">Create short URLs instantly with our fast service</div>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">📊</span>
+                        <div class="feature-content">
+                            <div class="feature-title">Analytics</div>
+                            <div class="feature-text">Track clicks and performance metrics</div>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🔒</span>
+                        <div class="feature-content">
+                            <div class="feature-title">Secure & Reliable</div>
+                            <div class="feature-text">Your URLs are safe and always accessible</div>
+                        </div>
                     </div>
                 </div>
-            <% } else if (locals.url) { %>
-                <div class="slide-up" style="text-align: center; padding: 3rem; color: #64748b;">
-                    <p style="font-size: 1.1rem;">📝 No URLs created yet. Create your first shortened URL above!</p>
-                </div>
-            <% } %>
+            </div>
         </div>
     </div>
 </body>

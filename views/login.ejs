@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - URL Shortener</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,82 +13,57 @@
         }
 
         body {
-            font-family: 'Share Tech Mono', monospace;
-            background: #000;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000000;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #00ff41;
+            color: #ffffff;
             line-height: 1.6;
             position: relative;
-            overflow: hidden;
-        }
-
-        /* Matrix rain background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, 
-                rgba(0, 0, 0, 0.9) 0%, 
-                rgba(0, 20, 0, 0.8) 50%, 
-                rgba(0, 0, 0, 0.9) 100%);
-            z-index: -2;
-        }
-
-        .matrix-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.2;
-        }
-
-        .matrix-rain {
-            position: absolute;
-            color: #00ff41;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 12px;
-            line-height: 12px;
-            animation: matrix-fall 4s linear infinite;
-        }
-
-        @keyframes matrix-fall {
-            0% {
-                transform: translateY(-100vh);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
         }
 
         .container {
             width: 100%;
-            max-width: 450px;
+            max-width: 1000px;
             padding: 2rem;
             position: relative;
             z-index: 10;
         }
 
-        .card {
-            background: rgba(0, 20, 0, 0.95);
-            border-radius: 10px;
-            padding: 3rem;
-            border: 1px solid #00ff41;
-            position: relative;
-            transition: transform 0.3s ease;
+        .two-column-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: stretch;
         }
 
-        .card:hover {
-            transform: translateY(-2px);
+        .left-column {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .right-column {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .header {
@@ -97,16 +72,16 @@
         }
 
         .logo {
-            font-family: 'Orbitron', monospace;
             font-size: 2.5rem;
             font-weight: 800;
-            color: #00ff41;
+            color: #ffffff;
             margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
         }
 
         .subtitle {
-            color: #00cc33;
-            font-size: 1rem;
+            color: #a0a0a0;
+            font-size: 1.1rem;
             font-weight: 400;
         }
 
@@ -121,59 +96,57 @@
         .form-label {
             display: block;
             margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #00ff41;
-            font-size: 0.9rem;
+            font-weight: 500;
+            color: #ffffff;
+            font-size: 0.95rem;
         }
 
         .form-input {
             width: 100%;
-            padding: 1rem;
-            border: 1px solid #00ff41;
-            border-radius: 5px;
+            padding: 1rem 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
             font-size: 1rem;
             transition: all 0.3s ease;
-            background: rgba(0, 20, 0, 0.8);
-            color: #00ff41;
-            font-family: 'Share Tech Mono', monospace;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-family: inherit;
         }
 
         .form-input:focus {
             outline: none;
-            border-color: #00ff88;
-            background: rgba(0, 30, 0, 0.9);
+            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .form-input::placeholder {
-            color: #00cc33;
-            opacity: 0.7;
+            color: #666666;
         }
 
         .submit-btn {
             width: 100%;
             padding: 1rem 2rem;
-            background: #00ff41;
-            color: #000;
+            background: #ffffff;
+            color: #000000;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 1rem;
-            font-weight: 700;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-family: 'Orbitron', monospace;
+            font-family: inherit;
             margin-top: 1rem;
         }
 
         .submit-btn:hover {
-            background: #00ff88;
-            transform: translateY(-1px);
+            background: rgba(255, 255, 255, 0.9);
         }
 
         .divider {
             text-align: center;
             margin: 2rem 0;
             position: relative;
-            color: #00cc33;
+            color: #a0a0a0;
             font-size: 0.875rem;
         }
 
@@ -184,11 +157,11 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: #00ff41;
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .divider span {
-            background: rgba(0, 20, 0, 0.95);
+            background: rgba(0, 0, 0, 0.8);
             padding: 0 1rem;
             position: relative;
         }
@@ -198,50 +171,109 @@
             text-align: center;
             padding: 1rem 2rem;
             background: transparent;
-            color: #00ff41;
-            border: 1px solid #00ff41;
-            border-radius: 5px;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 500;
             text-decoration: none;
             transition: all 0.3s ease;
-            font-family: 'Orbitron', monospace;
+            font-family: inherit;
         }
 
         .signup-link:hover {
-            background: #00ff41;
-            color: #000;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
         .features {
-            margin-top: 2rem;
+            margin-top: auto;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 1fr;
             gap: 1rem;
         }
 
         .feature {
-            text-align: center;
+            text-align: left;
             padding: 1rem;
-            background: rgba(0, 255, 65, 0.05);
-            border-radius: 5px;
-            border: 1px solid rgba(0, 255, 65, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
-        }
-
-        .feature:hover {
-            background: rgba(0, 255, 65, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
         .feature-icon {
             font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            display: block;
+            flex-shrink: 0;
+            color: #ffffff;
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-title {
+            font-size: 1rem;
+            color: #ffffff;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
         }
 
         .feature-text {
+            font-size: 0.8rem;
+            color: #a0a0a0;
+            font-weight: 400;
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-description {
+            color: #a0a0a0;
+            font-size: 1rem;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
             font-size: 0.75rem;
-            color: #00cc33;
-            font-weight: 500;
+            color: #a0a0a0;
+            font-weight: 400;
         }
 
         @media (max-width: 768px) {
@@ -249,7 +281,13 @@
                 padding: 1rem;
             }
             
-            .card {
+            .two-column-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .left-column,
+            .right-column {
                 padding: 2rem;
             }
             
@@ -257,9 +295,12 @@
                 font-size: 2rem;
             }
             
-            .features {
+            .welcome-title {
+                font-size: 1.5rem;
+            }
+            
+            .stats {
                 grid-template-columns: 1fr;
-                gap: 0.5rem;
             }
         }
 
@@ -267,7 +308,7 @@
         @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(15px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -280,9 +321,9 @@
             display: inline-block;
             width: 20px;
             height: 20px;
-            border: 3px solid rgba(0, 255, 65, 0.3);
+            border: 3px solid rgba(0, 0, 0, 0.3);
             border-radius: 50%;
-            border-top-color: #00ff41;
+            border-top-color: #000000;
             animation: spin 1s ease-in-out infinite;
         }
 
@@ -294,99 +335,105 @@
         .submit-btn:focus-visible,
         .form-input:focus-visible,
         .signup-link:focus-visible {
-            outline: 2px solid #00ff41;
+            outline: 2px solid #ffffff;
             outline-offset: 2px;
         }
     </style>
 </head>
 <body>
-    <!-- Matrix rain background -->
-    <div class="matrix-bg" id="matrixBg"></div>
-
     <div class="container">
-        <div class="card">
-            <div class="header">
-                <h1 class="logo">🔗 URL SHORTENER</h1>
-                <p class="subtitle">ACCESS THE MATRIX OF SHORTENED URLS</p>
-            </div>
+        <div class="two-column-layout">
+            <!-- Left Column - Login Form -->
+            <div class="left-column">
+                <div class="header">
+                    <h1 class="logo">URL Shortener</h1>
+                    <p class="subtitle">Sign in to manage your shortened URLs</p>
+                </div>
 
-            <div class="form-section">
-                <form action="/login" method="POST">
-                    <div class="form-group">
-                        <label for="name" class="form-label">USERNAME</label>
-                        <input type="text" id="name" name="name" class="form-input" required 
-                               placeholder="ENTER YOUR USERNAME">
+                <div class="form-section">
+                    <form action="/login" method="POST">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Username</label>
+                            <input type="text" id="name" name="name" class="form-input" required 
+                                   placeholder="Enter your username">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" id="password" name="password" class="form-input" required 
+                                   placeholder="Enter your password">
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            Sign In
+                        </button>
+                    </form>
+
+                    <div class="divider">
+                        <span>or</span>
                     </div>
 
-                    <div class="form-group">
-                        <label for="password" class="form-label">PASSWORD</label>
-                        <input type="password" id="password" name="password" class="form-input" required 
-                               placeholder="ENTER YOUR PASSWORD">
-                    </div>
-
-                    <button type="submit" class="submit-btn">
-                        🔐 ACCESS SYSTEM
-                    </button>
-                </form>
-
-                <div class="divider">
-                    <span>OR</span>
+                    <a href="/signup" class="signup-link">
+                        Create Account
+                    </a>
                 </div>
-
-                <a href="/signup" class="signup-link">
-                    ✨ CREATE NEW IDENTITY
-                </a>
             </div>
 
-            <div class="features">
-                <div class="feature">
-                    <div class="feature-icon">✂️</div>
-                    <div class="feature-text">SHORTEN URLS</div>
+            <!-- Right Column - Features & Info -->
+            <div class="right-column">
+                <div class="welcome-section">
+                    <h2 class="welcome-title">Welcome Back!</h2>
+                    <p class="welcome-description">
+                        Access your URL shortening dashboard and manage all your links in one place. 
+                        Track analytics, monitor performance, and create new shortened URLs instantly.
+                    </p>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon">📊</div>
-                    <div class="feature-text">TRACK DATA</div>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">URLs Shortened</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Total Clicks</div>
+                    </div>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon">🔒</div>
-                    <div class="feature-text">SECURE</div>
+
+                <div class="features">
+                    <div class="feature">
+                        <span class="feature-icon">✂️</span>
+                        <div class="feature-content">
+                            <div class="feature-title">Shorten URLs</div>
+                            <div class="feature-text">Convert long URLs into short, shareable links instantly</div>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">📊</span>
+                        <div class="feature-content">
+                            <div class="feature-title">Track Analytics</div>
+                            <div class="feature-text">Monitor click counts and performance metrics</div>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🔒</span>
+                        <div class="feature-content">
+                            <div class="feature-title">Secure & Reliable</div>
+                            <div class="feature-text">Your links are secure with 99.9% uptime</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Matrix rain effect
-        function createMatrixRain() {
-            const matrixBg = document.getElementById('matrixBg');
-            const characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-            
-            for (let i = 0; i < 30; i++) {
-                const rain = document.createElement('div');
-                rain.className = 'matrix-rain';
-                rain.style.left = Math.random() * 100 + '%';
-                rain.style.animationDelay = Math.random() * 4 + 's';
-                rain.style.animationDuration = (Math.random() * 2 + 3) + 's';
-                
-                let text = '';
-                for (let j = 0; j < 15; j++) {
-                    text += characters[Math.floor(Math.random() * characters.length)] + '<br>';
-                }
-                rain.innerHTML = text;
-                
-                matrixBg.appendChild(rain);
-            }
-        }
-
-        // Initialize matrix rain
-        createMatrixRain();
-
         // Add loading state to form
         document.querySelector('form').addEventListener('submit', function() {
             const submitBtn = this.querySelector('.submit-btn');
             const originalText = submitBtn.textContent;
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="loading"></span> ACCESSING...';
+            submitBtn.innerHTML = '<span class="loading"></span> Signing in...';
             
             // Re-enable after timeout (in case of errors)
             setTimeout(() => {
